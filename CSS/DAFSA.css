@@ -1,0 +1,128 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #92c7f3;
+}
+
+#app {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+#graph {
+    height: calc(100vh - 40px);
+}
+
+#toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 10px;
+    background: #a9d3ff;
+    border-bottom: 1px solid #000;
+    min-height: 34px;
+}
+
+#toolbarLeft,
+#toolbarPlaceholder {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+.toolbar-spacer {
+    flex: 1;
+}
+
+#testResult {
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+.muted {
+    color: #666;
+}
+
+input[type="file"] {
+    padding: 2px;
+    background: transparent;
+    border: 0;
+}
+
+.input,
+input[type="text"] {
+    padding: 6px 10px;
+    min-width: 260px;
+    border-radius: 6px;
+    border: 1px solid #9cc2e8;
+    background: rgba(255, 255, 255, 0.6);
+    color: #223;
+    outline: none;
+}
+
+.input::placeholder,
+input[type="text"]::placeholder {
+    color: #6c7a89;
+}
+
+button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: #b679da;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease, transform .1s ease, border-color .2s ease;
+}
+
+button:hover {
+    background: #a962d6;
+}
+
+button:active {
+    background: #9651cf;
+    transform: translateY(1px);
+}
+
+button:disabled {
+    background: rgba(255, 255, 255, 0.6);
+    color: #778;
+    border-color: #c9d8ea;
+    cursor: not-allowed;
+}
+
+button.primary {
+    background: #1976d2;
+}
+
+button.primary:hover {
+    background: #1565c0;
+}
+
+a.tool-link {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #1976d2;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background .2s ease, transform .1s ease;
+}
+
+a.tool-link:hover {
+    background: #0f5ab3;
+    transform: translateY(-1px);
+}
+
+a.tool-link:active {
+    transform: translateY(0);
+}

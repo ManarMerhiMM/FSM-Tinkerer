@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>DAFSA Builder & Minimizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <link rel="stylesheet" href="CSS/DAFSA.css">
+    <link rel="icon" type="image/x-icon" href="icons/DAFSA.ico">
+</head>
+
+<body>
+    <div id="app">
+        <div id="toolbar">
+            <div id="toolbarLeft">
+                <input type="file" id="languageFile" accept=".txt,.json" />
+                <button id="loadLangBtn">Represent Language</button>
+
+                <button id="minimizeBtn" disabled>Minimize</button>
+
+                <span style="flex: 0 0 24px;"></span>
+
+                <input id="testInput" type="text" placeholder="input string" disabled />
+                <button id="testBtn" disabled>Test String</button>
+                <span id="testResult" class="muted">No language loaded.</span>
+            </div>
+            <a href="NFAtoDFA.html" class="tool-link">NFA to DFA Converter</a>
+        </div>
+
+        <div id="graph"></div>
+    </div>
+    <script src="JS/DAFSA.js"></script>
+</body>
+
+</html>
