@@ -16,13 +16,21 @@
                 <input type="file" id="automatonFile" accept=".txt,.json" />
                 <button id="loadBtn">Load Automaton</button>
                 <button id="convertBtn" disabled>Convert to DFA</button>
+        
                 <span style="flex: 0 0 24px;"></span>
+        
                 <input id="testInput" type="text" placeholder="input string" disabled />
                 <button id="testBtn" disabled>Test String</button>
                 <span id="testResult" class="muted">No automaton loaded.</span>
             </div>
-            <a href="DAFSA.html" class="tool-link">DAFSA Builder and Minimizer</a>
+        
+            <div id="toolbarNav">
+                <a href="DAFSA.html" class="tool-link">DAFSA Builder &amp; Minimizer</a>
+                <a href="NFAtoDFA.html" class="tool-link">NFA to DFA Converter</a>
+                <a href="FSM_Applications.html" class="tool-link">FSM Applications</a>
+            </div>
         </div>
+
 
         <div id="graph"></div>
     </div>

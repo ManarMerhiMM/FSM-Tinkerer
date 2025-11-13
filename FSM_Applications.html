@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FSM / NFA Applications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="CSS/FSM_Applications.css">
+    <link rel="icon" type="image/x-icon" href="icons/node.png">
+
+</head>
+
+<body>
+    <div id="app">
+        <div id="toolbar">
+            <div id="toolbarTitle">
+                FSM / NFA Applications
+            </div>
+
+            <div id="toolbarNav">
+                <a href="DAFSA.html" class="tool-link">DAFSA Builder &amp; Minimizer</a>
+                <a href="NFAtoDFA.html" class="tool-link">NFA to DFA Converter</a>
+                <a href="FSM_Applications.html" class="tool-link">FSM Applications</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>Exercise 3 – Applications of Finite State Machines (FSMs)</h1>
+
+            <p>
+                Finite State Machines are models of computation that operate with a finite set of
+                states and react to inputs or stimuli by moving between these states. A
+                <strong>state</strong> represents a mode of operation at a given moment, and a
+                <strong>transition</strong> represents how the system reacts when an event occurs.
+                Whenever we need to describe or implement behavior that depends on patterns of
+                events, FSMs are a natural fit. They appear in digital logic, embedded systems,
+                communication protocols, and control software.
+            </p>
+
+            <p>
+                The two examples below connect FSMs to everyday engineering systems:
+                a traffic light controller and a vending machine controller.
+            </p>
+
+            <!-- ===================== APPLICATION 1 ===================== -->
+            <section>
+                <h2>Application 1 – Traffic Light Control System</h2>
+
+                <h3>1. Introduction</h3>
+                <p>
+                    One of the most common examples of an FSM is a traffic light controller at an
+                    intersection. It controls the flow of vehicles and pedestrians using light
+                    signals (Green, Yellow, Red) based mainly on timing. The FSM guarantees that
+                    opposite directions are never green at the same time and that pedestrians are
+                    only allowed to cross at safe moments.
+                </p>
+
+                <h3>2. FSM Definition</h3>
+                <p>M = (Q, Σ, δ, q₀, F)</p>
+                <ul>
+                    <li><strong>Q</strong> – Set of states</li>
+                    <li><strong>Σ</strong> – Set of input symbols or events</li>
+                    <li><strong>δ</strong> – Transition function</li>
+                    <li><strong>q₀</strong> – Initial state</li>
+                    <li><strong>F</strong> – Final or accepting states (not applicable here)</li>
+                </ul>
+
+                <h4>Set of States (Q)</h4>
+                <table>
+                    <tr>
+                        <th>State</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>S₁</td>
+                        <td>Green Light (Main Road)</td>
+                    </tr>
+                    <tr>
+                        <td>S₂</td>
+                        <td>Yellow Light (Main Road)</td>
+                    </tr>
+                    <tr>
+                        <td>S₃</td>
+                        <td>All-Red (Safety Delay)</td>
+                    </tr>
+                    <tr>
+                        <td>S₄</td>
+                        <td>Green Light (Side Road)</td>
+                    </tr>
+                    <tr>
+                        <td>S₅</td>
+                        <td>Yellow Light (Side Road)</td>
+                    </tr>
+                    <tr>
+                        <td>S₆</td>
+                        <td>Pedestrian Walk</td>
+                    </tr>
+                    <tr>
+                        <td>S₇</td>
+                        <td>Pedestrian Flashing Don’t Walk</td>
+                    </tr>
+                </table>
+
+                <h4>Input Symbols (Σ)</h4>
+                <ul>
+                    <li><strong>t_G_main, t_Y_main, t_G_side, t_Y_side, t_AR</strong> – timer expirations for the lights
+                    </li>
+                    <li><strong>t_PW, t_PF</strong> – pedestrian walk and flashing timers expire</li>
+                    <li><strong>t_AR_PED, t_AR_NOPED</strong> – all-red expired with / without a pending pedestrian
+                        request</li>
+                    <li><strong>reset</strong> – optional global reset</li>
+                </ul>
+
+                <h4>Output Function (λ)</h4>
+                <table>
+                    <tr>
+                        <th>State</th>
+                        <th>Active Outputs</th>
+                    </tr>
+                    <tr>
+                        <td>S₁ (Main Green)</td>
+                        <td>Main_G = 1, Side_R = 1, Ped_S = 1</td>
+                    </tr>
+                    <tr>
+                        <td>S₂ (Main Yellow)</td>
+                        <td>Main_Y = 1, Side_R = 1, Ped_S = 1</td>
+                    </tr>
+                    <tr>
+                        <td>S₃ (All-Red)</td>
+                        <td>Main_R = 1, Side_R = 1, Ped_S = 1</td>
+                    </tr>
+                    <tr>
+                        <td>S₄ (Side Green)</td>
+                        <td>Side_G = 1, Main_R = 1, Ped_S = 1</td>
+                    </tr>
+                    <tr>
+                        <td>S₅ (Side Yellow)</td>
+                        <td>Side_Y = 1, Main_R = 1, Ped_S = 1</td>
+                    </tr>
+                    <tr>
+                        <td>S₆ (Ped Walk)</td>
+                        <td>Ped_W = 1, Main_R = 1, Side_R = 1</td>
+                    </tr>
+                    <tr>
+                        <td>S₇ (Ped Flash)</td>
+                        <td>Ped_F = 1, Main_R = 1, Side_R = 1</td>
+                    </tr>
+                </table>
+
+                <h3>3. Explanation of Behavior</h3>
+                <p>
+                    The FSM starts in <strong>S₁</strong> (Main Green). After the main-road
+                    green timer expires, it moves to yellow then to an all-red safety state.
+                    Depending on whether a pedestrian has requested to cross, the FSM either
+                    switches to <strong>S₆</strong> (Pedestrian Walk) or gives green to the side
+                    road. Eventually the controller cycles back to the main-road green. Because
+                    both the states and transitions are carefully defined, there is never a
+                    situation where both directions are green at the same time.
+                </p>
+
+                <h3>4. Example Run</h3>
+                <p>
+                    One example sequence is:
+                    Main Road Green (30 s) → Yellow (5 s) → All-Red (2 s) → Pedestrian Walk
+                    (10 s) → Pedestrian Flash (5 s) → Side Road Green → then repeat.
+                </p>
+
+                <h3>5. Advantages</h3>
+                <ul>
+                    <li>Predictable and deterministic behavior</li>
+                    <li>Easy to extend to multiple intersections</li>
+                    <li>Ensures safety and proper coordination of vehicles and pedestrians</li>
+                </ul>
+            </section>
+
+            <!-- ===================== APPLICATION 2 ===================== -->
+            <section>
+                <h2>Application 2 – Vending Machine Controller</h2>
+
+                <h3>1. Introduction</h3>
+                <p>
+                    A vending machine that accepts coins and dispenses products based on the
+                    amount paid can also be modeled as an FSM. Each state corresponds to the
+                    current credit or operating mode, and transitions occur when coins are
+                    inserted, items are selected, or special conditions like timeout or out-of-stock
+                    are detected.
+                </p>
+
+                <h3>2. FSM Definition</h3>
+                <p>M = (Q, Σ, δ, q₀, λ)</p>
+                <ul>
+                    <li><strong>Q</strong> – Set of states</li>
+                    <li><strong>Σ</strong> – Set of input symbols and events</li>
+                    <li><strong>δ</strong> – Transition function</li>
+                    <li><strong>q₀</strong> – Initial state</li>
+                    <li><strong>λ</strong> – Output function</li>
+                </ul>
+
+                <h4>Set of States (Q)</h4>
+                <table>
+                    <tr>
+                        <th>State</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>S₁</td>
+                        <td>Idle</td>
+                    </tr>
+                    <tr>
+                        <td>S₂</td>
+                        <td>Accepting Coins</td>
+                    </tr>
+                    <tr>
+                        <td>S₃</td>
+                        <td>Sufficient Credit</td>
+                    </tr>
+                    <tr>
+                        <td>S₄</td>
+                        <td>Dispensing Product</td>
+                    </tr>
+                    <tr>
+                        <td>S₅</td>
+                        <td>Returning Change</td>
+                    </tr>
+                    <tr>
+                        <td>S₆</td>
+                        <td>Refunding</td>
+                    </tr>
+                    <tr>
+                        <td>S₇</td>
+                        <td>Out of Stock</td>
+                    </tr>
+                </table>
+
+                <h4>Input Symbols (Σ)</h4>
+                <ul>
+                    <li><strong>coin_inserted</strong> – coin inserted, adds to credit</li>
+                    <li><strong>credit_ge_price</strong> – available credit ≥ item price</li>
+                    <li><strong>cancel / timeout</strong> – user cancels or waits too long</li>
+                    <li><strong>select_ok</strong> – valid item selected and in stock</li>
+                    <li><strong>select_empty</strong> – selected item is out of stock</li>
+                    <li><strong>done</strong> – operation finished (dispense / change / refund)</li>
+                    <li><strong>stock_empty</strong> – machine detects no stock</li>
+                    <li><strong>stock_ok</strong> – machine restocked and ready</li>
+                </ul>
+
+                <h4>Output Function (λ)</h4>
+                <table>
+                    <tr>
+                        <th>State</th>
+                        <th>Active Outputs</th>
+                    </tr>
+                    <tr>
+                        <td>S₁ (Idle)</td>
+                        <td>Display = “Insert Coin”, Ready</td>
+                    </tr>
+                    <tr>
+                        <td>S₂ (Accepting)</td>
+                        <td>Display = “Balance: X”</td>
+                    </tr>
+                    <tr>
+                        <td>S₃ (Sufficient Credit)</td>
+                        <td>Display = “Select Item”</td>
+                    </tr>
+                    <tr>
+                        <td>S₄ (Dispensing)</td>
+                        <td>Dispense, Lock</td>
+                    </tr>
+                    <tr>
+                        <td>S₅ (Returning Change)</td>
+                        <td>Return_Ch</td>
+                    </tr>
+                    <tr>
+                        <td>S₆ (Refunding)</td>
+                        <td>Refund, Display = “Refunding”</td>
+                    </tr>
+                    <tr>
+                        <td>S₇ (Out of Stock)</td>
+                        <td>Display = “Out of Stock”, Lock</td>
+                    </tr>
+                </table>
+
+                <h3>3. Explanation of Behavior</h3>
+                <p>
+                    The vending machine starts in the <strong>Idle</strong> state waiting for a
+                    coin. When coins are inserted it moves to an accepting state and accumulates
+                    credit. Once the credit is sufficient, the user is prompted to select an item.
+                    A valid selection leads to a dispensing state, followed by returning any
+                    change. If the user cancels or the selected item is empty, the FSM moves to a
+                    refund state and returns the balance before going back to Idle. When stock is
+                    completely depleted, the machine indicates “Out of Stock” until it is
+                    restocked.
+                </p>
+
+                <h3>4. Example Operation Traces</h3>
+                <ul>
+                    <li>Idle → coin_inserted → coin_inserted → Sufficient Credit → Select Item → Dispensing → Returning
+                        Change → Idle</li>
+                    <li>Accepting → cancel → Refunding → Idle</li>
+                    <li>Stock Empty → Out of Stock → Restocked → Idle</li>
+                </ul>
+
+                <h3>5. FSM Properties</h3>
+                <ul>
+                    <li>Deterministic transitions for each possible input</li>
+                    <li>Safe handling of errors and refunds</li>
+                    <li>Easy to extend for multiple products and payment methods</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Conclusion</h2>
+                <p>
+                    These two examples show how FSMs provide a structured way to capture system
+                    behavior. In the traffic light controller, FSMs enforce safe signal ordering
+                    and coordination. In the vending machine, they manage monetary logic and user
+                    interaction. Because FSMs are deterministic and well-defined, they are a core
+                    tool in digital design and control applications.
+                </p>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

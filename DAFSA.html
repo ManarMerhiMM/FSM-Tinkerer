@@ -15,17 +15,23 @@
             <div id="toolbarLeft">
                 <input type="file" id="languageFile" accept=".txt,.json" />
                 <button id="loadLangBtn">Represent Language</button>
-
+        
                 <button id="minimizeBtn" disabled>Minimize</button>
-
+        
                 <span style="flex: 0 0 24px;"></span>
-
+        
                 <input id="testInput" type="text" placeholder="input string" disabled />
                 <button id="testBtn" disabled>Test String</button>
                 <span id="testResult" class="muted">No language loaded.</span>
             </div>
-            <a href="NFAtoDFA.html" class="tool-link">NFA to DFA Converter</a>
+        
+            <div id="toolbarNav">
+                <a href="DAFSA.html" class="tool-link">DAFSA Builder &amp; Minimizer</a>
+                <a href="NFAtoDFA.html" class="tool-link">NFA to DFA Converter</a>
+                <a href="FSM_Applications.html" class="tool-link">FSM Applications</a>
+            </div>
         </div>
+
 
         <div id="graph"></div>
     </div>
