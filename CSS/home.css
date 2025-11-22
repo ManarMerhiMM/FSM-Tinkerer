@@ -1,0 +1,323 @@
+/* =========================================================
+   FSM-Tinkerer • Home Page Styles (index.html)
+   ========================================================= */
+
+/* ---------- Theme tokens ---------- */
+
+:root {
+    --page-gradient: radial-gradient(circle at top left, #f4f7ff 0, #d5e5ff 38%, #9ec3ff 100%);
+    --toolbar-bg: rgba(250, 252, 255, 0.92);
+    --toolbar-border: rgba(148, 163, 184, 0.5);
+    --card-bg: #f7f9ff;
+
+    --text-main: #0f172a;
+    --text-muted: #6b7280;
+
+    --accent: #2563eb;
+    --accent-soft: rgba(37, 99, 235, 0.12);
+
+    --btn-main: #a855f7;
+    --btn-main-hover: #9333ea;
+
+    --radius-sm: 8px;
+    --radius-md: 18px;
+    --radius-pill: 999px;
+
+    --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.22);
+    --shadow-chip: 0 4px 12px rgba(15, 23, 42, 0.2);
+
+    --transition-fast: 0.16s ease-out;
+}
+
+/* ---------- Base reset ---------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text-main);
+    background: var(--page-gradient);
+}
+
+/* ---------- App shell ---------- */
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- Top toolbar ---------- */
+
+#toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 22px;
+    background: var(--toolbar-bg);
+    border-bottom: 1px solid var(--toolbar-border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.22);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#toolbarTitle {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+#toolbarSubtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Right side small links */
+
+#toolbarNav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#toolbarNav a {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+#toolbarNav a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Hero + cards ---------- */
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 24px 16px 36px;
+}
+
+#hero {
+    width: 100%;
+    max-width: 1040px;
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    padding: 28px 30px 32px;
+}
+
+/* Hero heading */
+
+#heroHeader {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#heroTitle {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+#heroTagline {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* Hero description */
+
+#hero p {
+    margin: 0 0 10px;
+    line-height: 1.6;
+}
+
+/* Tool grid */
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 22px;
+}
+
+/* Individual tool card */
+
+.tool-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px 16px 18px;
+    box-shadow: var(--shadow-chip);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative halo */
+.tool-card::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background:
+        radial-gradient(circle at top left, rgba(129, 140, 248, 0.16) 0, transparent 55%),
+        radial-gradient(circle at 120% 120%, rgba(244, 114, 182, 0.2) 0, transparent 50%);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Content layer */
+.tool-card-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* Card title + chip */
+
+.tool-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.tool-name {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.tool-chip {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Card text */
+
+.tool-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* Mini list */
+
+.tool-meta {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.tool-meta strong {
+    color: var(--text-main);
+}
+
+/* Buttons / links */
+
+.tool-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+a.primary-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--btn-main) 0%, #ec4899 100%);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    box-shadow: var(--shadow-chip);
+    transition:
+        transform 0.1s ease,
+        box-shadow var(--transition-fast),
+        filter var(--transition-fast);
+}
+
+a.primary-link:hover {
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(147, 51, 234, 0.55);
+}
+
+a.primary-link:active {
+    filter: brightness(0.97);
+    transform: translateY(0);
+    box-shadow: 0 3px 9px rgba(109, 40, 217, 0.6);
+}
+
+.card-secondary-text {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Footer note */
+
+#footerNote {
+    margin-top: 22px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ---------- Responsiveness ---------- */
+
+@media (max-width: 960px) {
+    #hero {
+        padding: 22px 18px 26px;
+    }
+
+    .tool-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    #toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    #heroHeader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tool-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

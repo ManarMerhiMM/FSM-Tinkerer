@@ -1,10 +1,55 @@
+/* =========================================================
+   FSM-Tinkerer  •  DAFSA Builder & Minimizer
+   Final themed layout – consistent with all pages
+   ========================================================= */
+
+/* ---------- Theme tokens ---------- */
+
+:root {
+    --page-gradient: radial-gradient(circle at top left, #f4f7ff 0, #d5e5ff 38%, #9ec3ff 100%);
+    --toolbar-bg: rgba(250, 252, 255, 0.9);
+    --toolbar-border: rgba(148, 163, 184, 0.45);
+    --panel-bg: #f7f9ff;
+
+    --text-main: #0f172a;
+    --text-muted: #6b7280;
+
+    --accent: #2563eb;                /* blue */
+    --accent-soft: rgba(37, 99, 235, 0.08);
+
+    --btn-main: #a855f7;              /* purple */
+    --btn-main-hover: #9333ea;
+    --btn-main-active: #7e22ce;
+
+    --radius-xs: 4px;
+    --radius-sm: 7px;
+    --radius-pill: 999px;
+
+    --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.22);
+    --shadow-chip: 0 3px 8px rgba(15, 23, 42, 0.16);
+
+    --transition-fast: 0.16s ease-out;
+}
+
+/* ---------- Base reset ---------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html,
 body {
     height: 100%;
     margin: 0;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background: #92c7f3;
+    padding: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text-main);
+    background: var(--page-gradient);
 }
+
+/* ---------- Layout shell ---------- */
 
 #app {
     height: 100%;
@@ -12,117 +57,231 @@ body {
     grid-template-rows: auto 1fr;
 }
 
-#graph {
-    height: calc(100vh - 40px);
-}
-
+/* Toolbar row */
 #toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    padding: 6px 10px;
-    background: #a9d3ff;
-    border-bottom: 1px solid #000;
-    min-height: 34px;
+    gap: 12px;
+    padding: 10px 18px;
+    background: var(--toolbar-bg);
+    border-bottom: 1px solid var(--toolbar-border);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    position: relative;
+    z-index: 5;
 }
 
+/* Left controls cluster */
 #toolbarLeft,
 #toolbarPlaceholder {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 42px;
 }
 
-.toolbar-spacer {
-    flex: 1;
+/* Right navigation cluster */
+#toolbarNav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-#testResult {
-    margin-left: 8px;
-    font-weight: 600;
-}
-
-.muted {
-    color: #666;
-}
+/* ---------- Inputs & status ---------- */
 
 input[type="file"] {
-    padding: 2px;
-    background: transparent;
-    border: 0;
+    font-size: 13px;
+    border-radius: var(--radius-pill);
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--text-main);
+    cursor: pointer;
 }
 
-.input,
-input[type="text"] {
-    padding: 6px 10px;
-    min-width: 260px;
-    border-radius: 6px;
-    border: 1px solid #9cc2e8;
-    background: rgba(255, 255, 255, 0.6);
-    color: #223;
+/* keep keyboard-focus visible */
+input[type="file"]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Text input – test string */
+input[type="text"],
+input[type="search"],
+input[type="number"],
+#testInput {
+    min-width: 230px;
+    padding: 7px 11px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-main);
+    font-size: 14px;
     outline: none;
+    transition: border-color var(--transition-fast),
+                box-shadow var(--transition-fast),
+                background var(--transition-fast);
 }
 
-.input::placeholder,
-input[type="text"]::placeholder {
-    color: #6c7a89;
+input[type="text"]::placeholder,
+#testInput::placeholder {
+    color: var(--text-muted);
 }
+
+input[type="text"]:focus,
+#testInput:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.35);
+    background: #ffffff;
+}
+
+/* Muted status text */
+.muted {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* Test result label */
+#testResult {
+    font-weight: 500;
+}
+
+/* ---------- Buttons ---------- */
 
 button {
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    background: #b679da;
-    color: #fff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--btn-main) 0%, #ec4899 100%);
+    color: #ffffff;
     font-size: 14px;
     font-weight: 600;
+    letter-spacing: 0.02em;
     cursor: pointer;
-    transition: background .2s ease, transform .1s ease, border-color .2s ease;
+    box-shadow: var(--shadow-chip);
+    transition:
+        transform 0.1s ease,
+        box-shadow var(--transition-fast),
+        filter var(--transition-fast),
+        opacity var(--transition-fast),
+        background var(--transition-fast);
 }
 
 button:hover {
-    background: #a962d6;
+    filter: brightness(1.03);
+    box-shadow: 0 5px 14px rgba(59, 7, 100, 0.35);
+    transform: translateY(-1px);
 }
 
 button:active {
-    background: #9651cf;
-    transform: translateY(1px);
+    filter: brightness(0.98);
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(59, 7, 100, 0.4);
 }
 
 button:disabled {
-    background: rgba(255, 255, 255, 0.6);
-    color: #778;
-    border-color: #c9d8ea;
     cursor: not-allowed;
+    opacity: 0.55;
+    box-shadow: none;
+    background: linear-gradient(135deg, #cbd5f5 0%, #e5e7eb 100%);
+    color: #6b7280;
 }
 
-button.primary {
-    background: #1976d2;
+/* Optional "ghost" style if you ever add class="ghost" */
+button.ghost {
+    background: #ffffff;
+    color: var(--accent);
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    box-shadow: 0 2px 6px rgba(148, 163, 184, 0.5);
 }
 
-button.primary:hover {
-    background: #1565c0;
+button.ghost:hover {
+    background: var(--accent-soft);
 }
+
+/* ---------- Navigation pills ---------- */
 
 a.tool-link {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 6px;
-    background: #1976d2;
-    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 16px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    background: rgba(255, 255, 255, 0.7);
     text-decoration: none;
+    color: var(--accent);
     font-weight: 600;
     font-size: 14px;
-    transition: background .2s ease, transform .1s ease;
+    letter-spacing: 0.01em;
+    box-shadow: 0 2px 7px rgba(15, 23, 42, 0.15);
+    transition:
+        background var(--transition-fast),
+        color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform 0.1s ease;
+}
+
+/* Mark DAFSA as the active nav on this page */
+#toolbarNav a[href$="DAFSA.html"] {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: rgba(15, 23, 42, 0.25);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.45);
 }
 
 a.tool-link:hover {
-    background: #0f5ab3;
+    background: var(--accent);
+    color: #ffffff;
     transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.42);
 }
 
 a.tool-link:active {
     transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.35);
+}
+
+/* ---------- Graph canvas ---------- */
+
+#graph {
+    height: calc(100vh - 52px); /* toolbar height + top margin */
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.95) 0, transparent 55%),
+        radial-gradient(circle at 85% 90%, rgba(191, 219, 254, 0.9) 0, transparent 55%),
+        var(--panel-bg);
+    border-radius: 14px 14px 0 0;
+    margin: 12px 16px 0;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+}
+
+/* Keep vis-network canvas corners rounded */
+#graph canvas {
+    border-radius: inherit;
+}
+
+/* ---------- Small-screen tweaks ---------- */
+
+@media (max-width: 768px) {
+    #toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    #toolbarLeft,
+    #toolbarPlaceholder,
+    #toolbarNav {
+        justify-content: center;
+    }
+
+    #graph {
+        margin: 10px;
+        height: calc(100vh - 120px);
+    }
 }

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>FSM Tinkerer • Home</title>
+    <link rel="stylesheet" href="CSS/home.css" />
+    <link rel="icon" href="icons/node.png" />
+</head>
+<body>
+<div id="app">
+    <header id="toolbar">
+        <div>
+            <div id="toolbarTitle">FSM Tinkerer</div>
+            <div id="toolbarSubtitle">Finite-State Machine Visualizer &amp; Converter</div>
+        </div>
+        <nav id="toolbarNav">
+            <a href="https://github.com/ManarMerhiMM/FSM-Tinkerer" target="_blank" rel="noreferrer">GitHub Repo</a>
+            <a href="README.md" target="_blank" rel="noreferrer">README</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div id="heroHeader">
+                <h1 id="heroTitle">Welcome to FSM Tinkerer</h1>
+                <p id="heroTagline">Choose a tool to start exploring NFAs, DFAs, and DAFSAs.</p>
+            </div>
+
+            <p>
+                FSM Tinkerer is a small educational toolkit for experimenting with:
+                nondeterministic finite automata (NFAs), deterministic finite automata (DFAs),
+                and deterministic acyclic finite state automata (DAFSAs).
+            </p>
+            <p>
+                Use the tools below to
+                convert NFAs to DFAs, build &amp; minimize DAFSAs from a finite language,
+                and read about two practical FSM applications.
+            </p>
+
+            <div class="tool-grid">
+                <!-- DAFSA card -->
+                <article class="tool-card">
+                    <div class="tool-card-inner">
+                        <div class="tool-card-header">
+                            <div class="tool-name">DAFSA Builder</div>
+                            <div class="tool-chip">Exercise 1</div>
+                        </div>
+                        <p class="tool-desc">
+                            Upload a finite language in JSON format and build its deterministic
+                            acyclic finite-state automaton. Then apply minimization to merge
+                            equivalent suffix states.
+                        </p>
+                        <p class="tool-meta">
+                            <strong>Input:</strong> <code>ExampleLanguage.json</code><br />
+                            <strong>Tasks:</strong> build DAFSA, minimize, test membership.
+                        </p>
+                        <div class="tool-actions">
+                            <a class="primary-link" href="DAFSA.html">Open DAFSA Tool</a>
+                            <span class="card-secondary-text">DAFSA.html</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- NFA → DFA card -->
+                <article class="tool-card">
+                    <div class="tool-card-inner">
+                        <div class="tool-card-header">
+                            <div class="tool-name">NFA → DFA Converter</div>
+                            <div class="tool-chip">Exercise 2</div>
+                        </div>
+                        <p class="tool-desc">
+                            Visualize a nondeterministic automaton and automatically convert it
+                            to an equivalent deterministic automaton using the subset
+                            construction algorithm.
+                        </p>
+                        <p class="tool-meta">
+                            <strong>Input:</strong> <code>ExampleNFA.json</code><br />
+                            <strong>Tasks:</strong> load NFA, convert to DFA, test strings.
+                        </p>
+                        <div class="tool-actions">
+                            <a class="primary-link" href="NFAtoDFA.html">Open NFA → DFA Tool</a>
+                            <span class="card-secondary-text">NFAtoDFA.html</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Applications card -->
+                <article class="tool-card">
+                    <div class="tool-card-inner">
+                        <div class="tool-card-header">
+                            <div class="tool-name">FSM Applications</div>
+                            <div class="tool-chip">Exercise 3</div>
+                        </div>
+                        <p class="tool-desc">
+                            Read through two worked examples of real-world FSMs: a traffic
+                            light controller and a vending machine controller, including
+                            formal definitions and transition tables.
+                        </p>
+                        <p class="tool-meta">
+                            <strong>Content:</strong> definitions, tables, diagrams.<br />
+                            <strong>Mode:</strong> read-only reference.
+                        </p>
+                        <div class="tool-actions">
+                            <a class="primary-link" href="FSM_Applications.html">Open Applications</a>
+                            <span class="card-secondary-text">FSM_Applications.html</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <p id="footerNote">
+                Team members: Manar Merhi, Mohammad El Halabi, Malek Shibli, and Hadi Wehbi.
+            </p>
+        </section>
+    </main>
+</div>
+</body>
+</html>
