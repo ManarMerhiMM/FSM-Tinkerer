@@ -22,6 +22,9 @@ This project demonstrates the practical application of core **Automata Theory** 
 - Apply **state minimization** to merge equivalent suffix states.  
 - Validate strings for membership in the represented language.  
 
+### ℹ️ FSM Applications
+- Learn more about FSMs through the explanation of 2 practical applications
+
 ### 💡 General Features
 - Clean, consistent interface across tools.  
 - Interactive graph visualization powered by **vis-network**.  
@@ -38,10 +41,12 @@ Machine Tinkerer/
 ├── CSS/
 │ ├── DAFSA.css # Styling for DAFSA Builder & Minimizer
 │ └── NFAtoDFA.css # Styling for NFA→DFA Converter
+│ └── FSM_Applications.css # Styling for FSM_Applications
 │
 ├── icons/
 │ ├── DAFSA.ico # Favicon for DAFSA page
 │ └── NFAtoDFA.ico # Favicon for NFA→DFA page
+│ └── node.png # Favicon for FSM_Applications page
 │
 ├── JS/
 │ ├── DAFSA.js # Logic for DAFSA building, minimization, and validation
@@ -49,6 +54,7 @@ Machine Tinkerer/
 │
 ├── DAFSA.html # DAFSA Builder & Minimizer HTML structure
 ├── NFAtoDFA.html # NFA→DFA Converter HTML structure
+├── FSM_Applications.html # FSM Applications page (static read-only)
 │
 ├── ExampleLanguage.json # Example input: finite language definition for DAFSA building
 ├── ExampleNFA.json # Example input: NFA definition for NFA→DFA conversion
@@ -113,23 +119,25 @@ git clone https://github.com/ManarMerhiMM/FSM-Tinkerer.git
 cd FSM-Tinkerer
 ```
 
-2. **Open either** `NFAtoDFA.html` **or** `DAFSA.html` **directly in your browser.**
+2. **Open either** `NFAtoDFA.html` **or** `DAFSA.html` **or** `FSM_Applications.html` **directly in your browser.**
 
-3. **Upload your automaton or language definition.**
+3. **Upload your automaton or language definition or simply view the 2 FSM applications.**
 
 4. **Explore:**
    - Convert **NFA → DFA**
    - Build and minimize **DAFSA**
+   - View FSM Applications for information
    - Test strings for acceptance
 
 ## 📚 Educational Context
 
-This project implements **Exercises 1 & 2** from the `Theory of Computation` Project at `RHU University`; `Fall 2025-2026`, focusing on:
+This project implements **Exercises 1, 2, & 3** from the `Theory of Computation` Project at `RHU University`; `Fall 2025-2026`, focusing on:
 
 - Construction of **NFAs from Machine Definition**
 - Construction of **DFAs from NFAs**
 - **DAFSA Construction from Language Definition** and **height minimization of DAFSAs**
 - Visual representation of **state transitions** and **accept states**
+- FSM Applications (2 examples)
 
 It serves as a hands-on educational tool for understanding **deterministic** and **non-deterministic** automata, as well as their practical equivalence.
 
