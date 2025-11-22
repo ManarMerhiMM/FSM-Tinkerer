@@ -98,7 +98,7 @@ Machine Tinkerer/
 }
 ```
 
-### Language Example (ExampleLanguage.json)
+### Language Example (`ExampleLanguage.json`)
 ```json
 {
     "alphabet": ["a", "b"],
